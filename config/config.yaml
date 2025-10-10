@@ -1,0 +1,8 @@
+artifacts_root: artifacts
+
+
+data_ingestion:
+  root_dir: chest_cancer_classification/artifacts/data_ingestion
+  source_URL: https://drive.google.com/file/d/1n8q3JyWlv5uBwZMVqOIUiqe2X-pv1bMw/view?usp=drive_link
+  local_data_file: chest_cancer_classification/artifacts/data_ingestion/data.zip
+  unzip_dir: chest_cancer_classification/artifacts/data_ingestion
