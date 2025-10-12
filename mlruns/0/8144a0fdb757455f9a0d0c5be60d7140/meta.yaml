@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/manud/Machine_learning_projects/Chest%20Cancer%20Detection%20using%20DL%20and%20MLflow/chest_cancer_classifier/mlruns/0/8144a0fdb757455f9a0d0c5be60d7140/artifacts
+end_time: 1760263042549
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8144a0fdb757455f9a0d0c5be60d7140
+run_name: clumsy-hawk-760
+run_uuid: 8144a0fdb757455f9a0d0c5be60d7140
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1760263025952
+status: 4
+tags: []
+user_id: manud
