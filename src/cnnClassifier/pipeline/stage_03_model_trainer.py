@@ -1,6 +1,7 @@
 from cnnClassifier.config.configuration import ConfigurationManager
 from cnnClassifier.components.model_trainer import Training
 from cnnClassifier import logger
+import shutil
 
 STAGE_NAME = "Training"
 
@@ -15,6 +16,11 @@ class ModelTrainingPipeline:
         training.get_base_model()
         training.train_valid_generator()
         training.train()
+
+        source = "C:/Users/manud/Machine_learning_projects/Chest Cancer Detection using DL and MLflow/che_cancer_classifier/artifacts/training/model.h5"
+        destination = "C:/Users/manud/Machine_learning_projects/Chest Cancer Detection using DL and MLflow/chest_cancer_classifier/model"
+
+        shutil.copy(source, destination)
 
 
 
