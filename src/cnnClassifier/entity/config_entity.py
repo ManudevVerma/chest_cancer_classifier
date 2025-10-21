@@ -14,7 +14,7 @@ class PrepareBaseModelConfig:
     root_dir: Path
     base_model_path: Path
     updated_base_model_path: Path
-    params_image_size: list
+    params_image_size: tuple
     params_learning_rate: float
     params_include_top: bool
     params_weights: str
@@ -29,7 +29,7 @@ class TrainingConfig:
     params_epochs: int
     params_batch_size: int
     params_is_augmentation: bool
-    params_image_size: list
+    params_image_size: tuple
 
 @dataclass(frozen=True)
 class EvaluationConfig:
@@ -37,6 +37,6 @@ class EvaluationConfig:
     training_data: Path
     all_params: dict
     mlflow_uri: str
-    params_image_size: list
+    params_image_size: tuple
     params_batch_size: int
 

@@ -1,10 +1,10 @@
 #we can update this when we build model and include model training related parameters here
 
-AUGMENTATION: True
-IMAGE_SIZE: [224, 224, 3] # as per VGG 16 model
-BATCH_SIZE: 16
-INCLUDE_TOP: False
-EPOCHS: 1
-CLASSES: 2
-WEIGHTS: imagenet
-LEARNING_RATE: 0.01
+AUGMENTATION: False              # Enable data augmentation to improve generalization
+IMAGE_SIZE: (224, 224, 3)       # DenseNet121 input shape
+BATCH_SIZE: 32                  # Balanced for 224x224; increase if GPU has more memory
+INCLUDE_TOP: False              # We add our own classification head
+EPOCHS: 20                      # 1000 is too high; DenseNet will likely converge in 30–80 epochs
+CLASSES: 2                      # Binary classification (e.g., cancer / no cancer)
+WEIGHTS: imagenet               # Use pre-trained ImageNet weights
+LEARNING_RATE: 0.02           # 1e-4 is ideal for fine-tuning; 1e-6 is too small

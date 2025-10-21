@@ -5,6 +5,7 @@ import mlflow.keras #this is for deep learning, but you can also import mlflow.s
 from urllib.parse import urlparse
 from cnnClassifier.entity.config_entity import EvaluationConfig
 from cnnClassifier.utils.common import save_json
+import ast
 
 class Evaluation:
     def __init__(self, config: EvaluationConfig):
@@ -17,9 +18,9 @@ class Evaluation:
             rescale = 1./255,
             validation_split=0.30
         )
-
+        shape = tuple(ast.literal_eval(self.config.params_image_size))
         dataflow_kwargs = dict(
-            target_size=self.config.params_image_size[:-1],
+            target_size=shape[:-1],
             batch_size=self.config.params_batch_size,
             interpolation="bilinear"
         )
@@ -53,6 +54,11 @@ class Evaluation:
 
 
     def log_into_mlflow(self):
+        import dagshub
+        dagshub.init(repo_owner='manudevverma429',
+                     repo_name='chest_cancer_classifier',
+                     mlflow=True)
+
         mlflow.set_registry_uri(self.config.mlflow_uri)
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
@@ -68,6 +74,6 @@ class Evaluation:
                 # There are other ways to use the Model Registry, which depends on the use case,
                 # please refer to the doc for more information:
                 # https://mlflow.org/docs/latest/model-registry.html#api-workflow
-                mlflow.keras.log_model(self.model, "model", registered_model_name="VGG16Model")
+                mlflow.keras.log_model(self.model, "model", registered_model_name="DenseNet121")
             else:
                 mlflow.keras.log_model(self.model, "model")

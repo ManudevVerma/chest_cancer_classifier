@@ -1,29 +1,27 @@
-import urllib.request as request
-from zipfile import ZipFile
 import tensorflow as tf
-import os
 from cnnClassifier.entity.config_entity import TrainingConfig
 from pathlib import Path
+import ast
+
 
 class Training:
     def __init__(self, config: TrainingConfig):
         self.config = config
-
 
     def get_base_model(self):
         self.model = tf.keras.models.load_model(
             self.config.updated_base_model_path
         )
 
-    def train_valid_generator(self): #this code separates the data into training and testing data and validation set and feed it into the model is is directly available on keras application
+    def train_valid_generator(self):
 
         datagenerator_kwargs = dict(
-            rescale = 1./255,
+            rescale=1. / 255,
             validation_split=0.20
         )
-
+        input_shape = tuple(ast.literal_eval(self.config.params_image_size))
         dataflow_kwargs = dict(
-            target_size=self.config.params_image_size[:-1],
+            target_size=input_shape[:-1],
             batch_size=self.config.params_batch_size,
             interpolation="bilinear"
         )
@@ -59,7 +57,6 @@ class Training:
             **dataflow_kwargs
         )
 
-
     @staticmethod
     def save_model(path: Path, model: tf.keras.Model):
         model.save(path)
@@ -68,8 +65,6 @@ class Training:
         self.steps_per_epoch = self.train_generator.samples // self.train_generator.batch_size
         self.validation_steps = self.valid_generator.samples // self.valid_generator.batch_size
 
-        print("Model output classes:", self.model.output_shape)
-        print("Train generator classes:", self.train_generator.num_classes)
         self.model.fit(
             self.train_generator,
             epochs=self.config.params_epochs,
@@ -82,4 +77,3 @@ class Training:
             path=self.config.trained_model_path,
             model=self.model
         )
-
