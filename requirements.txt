@@ -1,6 +1,6 @@
 #when executing this req file it will download these files in venv and
 # -e . will look for setup file and will install the project as local package itself where __init__().py file is present.
-tensorflow==2.12.0
+tensorflow == 2.12.0
 pandas
 gdown
 dvc
@@ -16,7 +16,5 @@ ensure==1.0.2
 joblib
 types-PyYAML
 scipy
-Flask
-Flask-Cors
 dagshub
 -e .
