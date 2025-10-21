@@ -2,12 +2,6 @@ import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import os
-import shutil
-
-source = "C:/Users/manud/Machine_learning_projects/Chest Cancer Detection using DL and MLflow/chest_cancer_classifier/artifacts/training/model.h5"
-destination = "C:/Users/manud/Machine_learning_projects/Chest Cancer Detection using DL and MLflow/chest_cancer_classifier/model"
-
-shutil.copy(source, destination)
 
 class PredictionPipeline:
     def __init__(self, filename):
